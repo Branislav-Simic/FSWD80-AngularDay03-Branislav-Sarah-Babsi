@@ -1,0 +1,32 @@
+ 
+
+
+
+<form class="form-inline">
+        <input name="searchInput" class="form-control" placeholder="Search" #searchInput="ngModel" [(ngModel)]="searchText" style="width: 70%;">
+        <button class="btn btn-outline-primary" (click)="searchText=''">x</button>
+</form>
+
+<ng-container *ngFor="let car of carArray">
+  <div class="card-body"  *ngIf="filterCondition(car)">
+    <h5 class="card-title">Your DreamCar</h5>
+    <img src="{{car.img}}" alt="">
+    <ul>
+    	<li>{{car.brand}}</li>
+    	<li>{{car.model}}</li>
+    	<li>{{car.kilometer}}</li>
+    	<li>{{car.hoursePower}}</li>
+    	<li>{{car.buildYear}}</li>
+    	<li>{{car.price}}</li>
+      
+    </ul>
+ 		
+    <button class="btn btn-info" (click)="carService.populateForm(car)">Edit</button>
+
+
+   		<button class="btn btn-danger" (click)="onDelete(car.$key)">Delete</button>
+<div class="alert alert-danger" *ngIf="showDeletedMessage">Deleted successfully</div>
+  </div>
+</ng-container>
+
+
